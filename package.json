@@ -1,0 +1,22 @@
+{
+  "name": "signalk-multiplex-viewer",
+  "version": "0.0.1",
+  "description": "A plugin for tracing multiplexing routes and events for Signalk",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tonybentley/signalk-multiplex-viewer.git"
+  },
+  "keywords": [
+    "signalk-node-server-plugin"
+  ],
+  "author": "Tony Bentley",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/tonybentley/signalk-multiplex-viewer/issues"
+  },
+  "homepage": "https://github.com/tonybentley/signalk-multiplex-viewer#readme"
+}
