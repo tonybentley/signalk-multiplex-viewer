@@ -26,5 +26,5 @@ jobs:
       run: npm install
 
     - name: Build artifact
-      run: npm run build && rm public && mv build public && ls -la
+      run: npm run build && rm -rf public && mv build public && ls -la
    
