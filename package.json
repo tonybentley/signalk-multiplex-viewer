@@ -2,6 +2,9 @@
   "name": "signalk-multiplex-viewer",
   "version": "0.1.0",
   "private": true,
+  "release": {
+    "branches": ["master", "main"]
+  },
   "dependencies": {
     "@emotion/react": "^11.11.3",
     "@emotion/styled": "^11.11.0",
@@ -48,6 +51,7 @@
   },
   "devDependencies": {
     "@types/uuid": "^9.0.7",
-    "react-scripts": "^5.0.1"
+    "react-scripts": "^5.0.1",
+    "semantic-release": "^22.0.12"
   }
 }
