@@ -29,5 +29,7 @@ jobs:
       run: npm run build && rm -rf public && mv build public && ls public -la
 
     - name: publish dry-run
-      run: npm publish --dry-run
+      run: npm publish
+        env:
+        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
    

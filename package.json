@@ -1,7 +1,13 @@
 {
   "name": "signalk-multiplex-viewer",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
+  "homepage": "./",
+  "main": "index.js",
+  "keywords": [
+    "signalk-node-server-plugin",
+    "signalk-webapp"
+  ],
   "release": {
     "branches": ["master", "main"]
   },

@@ -1,6 +1,6 @@
 module.exports = function (app) {
 	return {
-		id: 'signalk-plugin-multiplex-viewer',
+		id: 'signalk-multiplex-viewer',
 		name: 'NMEA Multiplex Viewer',
 		description: 'Uses a signalk websocket to stream event data from emitters that map to NMEA sources',
 		start: async (options) => {
