@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/tonybentley/signalk-multiplex-viewer/compare/v1.0.0...v1.0.1) (2023-12-31)
+
+
+### Bug Fixes
+
+* release config in github action ([40aabaa](https://github.com/tonybentley/signalk-multiplex-viewer/commit/40aabaaab1755993ef2773ed55540f62abcd4c22))
+
 # 1.0.0 (2023-12-31)
 
 
