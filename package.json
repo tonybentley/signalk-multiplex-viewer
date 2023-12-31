@@ -1,6 +1,6 @@
 {
   "name": "signalk-multiplex-viewer",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "private": false,
   "repository": "https://github.com/tonybentley/signalk-multiplex-viewer",
   "homepage": "./",
@@ -16,7 +16,6 @@
       "@semantic-release/changelog",
       "@semantic-release/npm",
       "@semantic-release/git"
-
     ],
     "branches": [
       "master",
