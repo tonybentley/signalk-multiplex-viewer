@@ -1,5 +1,23 @@
-import { DataGrid, GridToolbar } from '@mui/x-data-grid';
-import { Grid, List, ListItem, Checkbox } from '@mui/material';
+import { 
+  DataGrid,
+  GridToolbarColumnsButton, 
+  GridToolbarContainer,
+  GridToolbarExport,
+  GridToolbarFilterButton 
+} from '@mui/x-data-grid';
+
+import {
+  Grid,
+  List,
+  ListItem,
+  Checkbox,
+  Accordion,
+  AccordionSummary,
+  Typography, 
+  AccordionDetails
+} from '@mui/material';
+
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { Data, Event, EventData, EEListItem, EListItem, EventItem } from './interfaces';
 import { v4 as uuid } from 'uuid';
@@ -10,6 +28,17 @@ const getData = async () => {
   const res = await fetch(`http://${location}/skServer/eventsRoutingData`);
   return await res.json();
 }
+
+const CustomToolbar = () => {
+  return (
+    <GridToolbarContainer>
+      <GridToolbarColumnsButton />
+      <GridToolbarFilterButton />
+      <GridToolbarExport />
+    </GridToolbarContainer>
+  );
+}
+
 
 function App() {
   
@@ -177,50 +206,71 @@ function App() {
   }, [emitters]);
   
   return (
-    <div className="App" style={{margin: '10px'}}>
-      <Grid container spacing={2} ml={4} mt={10}>
-        <Grid xs={3} item>
-          <h3 style={{float: 'left'}}>Emitters</h3>
-          <List>
-            { emitters.map((emitter: EListItem) => 
-              <ListItem  sx={{p:0}} key={emitter.id}>
-                <Checkbox 
-                  sx={{p:0}} 
-                  checked={emitter.checked} 
-                  onChange={updateEmittersChecked} 
-                  size="small" value={emitter.value}/> 
-                <span>{emitter.value}</span>
-              </ListItem>)}
-          </List>
-          <h3 style={{float: 'left'}}>Events</h3>
-          <List>
-            { events
-              .filter((event: EEListItem) => event.visible)
-              .map((event: EEListItem) => 
-                <ListItem  sx={{p:0}} key={event.id}>
-                  <Checkbox 
-                    sx={{p:0}} 
-                    checked={event.checked} 
-                    onChange={updateEventsChecked} 
-                    size="small" 
-                    value={event.value}/> 
-                  <span>{event.value}</span>
-                </ListItem>)}
-          </List>
+    <div className="App" style={{marginTop: 10}}>
+      <Grid container spacing={2} mt={5} pl={0}>
+        <Grid xs={3} item p={0}  style={{overflow:'scroll', height: 650}} mt={5}>
+        <Accordion defaultExpanded={true} disableGutters style={{boxShadow:'none'}}>
+            <AccordionSummary sx={{pt:0, mt:0, mb:0, pb:0}}
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls="panel1a-content"
+              aria-expanded={true}
+              id="emitters">
+                <Typography variant="body1">Emitters ({emitters.length})</Typography>
+            </AccordionSummary>
+            <AccordionDetails sx={{pt:0, mt:0,  mb:0, pb:0}}>
+              <List sx={{pt:0, mt:0}}>
+                { emitters.map((emitter: EListItem) => 
+                  <ListItem  sx={{p:.2}} key={emitter.id}>
+                    <Checkbox 
+                      sx={{p:0, mr:.08}} 
+                      checked={emitter.checked} 
+                      onChange={updateEmittersChecked} 
+                      size="small" value={emitter.value}/> 
+                      <label style={{marginLeft:8}}>{emitter.value}</label>
+                  </ListItem>)}
+              </List>
+            </AccordionDetails>
+          </Accordion>
+         
+          <Accordion defaultExpanded={true} style={{boxShadow:'none'}}>
+            <AccordionSummary  sx={{pt:0, mt:0, mb:0, pb:0}}
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls="panel1a-content"
+              aria-expanded={true}
+              id="events">
+                <Typography variant="body1">Events ({events.filter(item=>item.visible).length})</Typography>
+            </AccordionSummary>
+            <AccordionDetails  sx={{pt:0, mt:0, mb:0, pb:0}}>
+              <List sx={{pt:0, mt:0}}>
+                { events
+                  .filter((event: EEListItem) => event.visible)
+                  .map((event: EEListItem) => 
+                    <ListItem  sx={{p:0}} key={event.id}>
+                      <Checkbox 
+                        sx={{p:0, mr:.08}} 
+                        checked={event.checked} 
+                        onChange={updateEventsChecked} 
+                        size="small" 
+                        value={event.value}/> 
+                        <label style={{marginLeft:8}}>{event.value}</label>
+                    </ListItem>)}
+              </List>
+            </AccordionDetails>
+          </Accordion>
         </Grid>
         <Grid xs={8} item style={{ height: 700, width: '100%', marginTop: 16 }}>
         <DataGrid
-          rowCount={eventItems.length}
-          slots={{ toolbar: GridToolbar }}
+          slots={{ toolbar: CustomToolbar }}
+          hideFooter={true} 
           slotProps={{
             toolbar: {
               showQuickFilter: true,
             },
           }}
-          hideFooter={true}
           rows={eventItems}
           density='compact'
           columns={columnHeader} />
+          <Typography variant='body2' style={{float:'right', paddingTop:4}}>Total Rows: {eventItems.length}</Typography>
         </Grid>
       </Grid>
     </div>
