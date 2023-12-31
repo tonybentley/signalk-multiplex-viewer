@@ -30,14 +30,11 @@ jobs:
       run: npm run build && rm -rf public && mv build public && ls public -la
 
     - name: Semantic Release
-      uses: cycjimmy/semantic-release-action@v4
+      run: npx semantic-release
       env:
         GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
-    
-   
+
     - name: publish
       run: npm publish --access public
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-
-
