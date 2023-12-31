@@ -1,3 +1,12 @@
+## [1.0.2](https://github.com/tonybentley/signalk-multiplex-viewer/compare/v1.0.1...v1.0.2) (2023-12-31)
+
+
+### Bug Fixes
+
+* publishing ([e9ff616](https://github.com/tonybentley/signalk-multiplex-viewer/commit/e9ff6166ff6db6212f226b24fc423b8842276c30))
+* publishing ([b9caafb](https://github.com/tonybentley/signalk-multiplex-viewer/commit/b9caafb23b54afe174831e2d0e7e383beda15029))
+* versioning ([a28db89](https://github.com/tonybentley/signalk-multiplex-viewer/commit/a28db89d9c63908c723dffa1ae55e67c2faff7b9))
+
 ## [1.0.1](https://github.com/tonybentley/signalk-multiplex-viewer/compare/v1.0.0...v1.0.1) (2023-12-31)
 
 
