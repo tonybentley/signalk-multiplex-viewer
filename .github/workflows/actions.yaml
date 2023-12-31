@@ -27,15 +27,11 @@ jobs:
       run: npm install
 
     - name: Build artifact
-      run: npm run build && rm -rf public && mv build public && ls public -la
+      run: npm run build && rm -rf public && mv build public
 
     - name: Semantic Release
       run: npx semantic-release
       env:
         GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
         NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-
-    # - name: publish
-    #   run: npm publish --access public
-    #   env:
-    #     NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
