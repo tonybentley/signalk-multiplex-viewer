@@ -33,8 +33,9 @@ jobs:
       run: npx semantic-release
       env:
         GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+        NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-    - name: publish
-      run: npm publish --access public
-      env:
-        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+    # - name: publish
+    #   run: npm publish --access public
+    #   env:
+    #     NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
