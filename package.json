@@ -2,6 +2,7 @@
   "name": "signalk-multiplex-viewer",
   "version": "0.0.1",
   "private": false,
+  "repository": "https://github.com/tonybentley/signalk-multiplex-viewer",
   "homepage": "./",
   "main": "index.js",
   "keywords": [
@@ -9,6 +10,12 @@
     "signalk-webapp"
   ],
   "release": {
+    "plugins": [
+      "@semantic-release/commit-analyzer",
+      "@semantic-release/release-notes-generator",
+      "@semantic-release/changelog",
+      "@semantic-release/git"
+    ],
     "branches": [
       "master",
       "main"
