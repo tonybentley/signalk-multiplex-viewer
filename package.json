@@ -9,6 +9,10 @@
     "signalk-node-server-plugin",
     "signalk-webapp"
   ],
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/",
+    "tag": "latest"
+  },
   "release": {
     "plugins": [
       "@semantic-release/commit-analyzer",
