@@ -1,3 +1,10 @@
+## [1.0.4](https://github.com/tonybentley/signalk-multiplex-viewer/compare/v1.0.3...v1.0.4) (2024-01-01)
+
+
+### Bug Fixes
+
+* tag latest in npm ([29bd40a](https://github.com/tonybentley/signalk-multiplex-viewer/commit/29bd40a960be2590fc77981fbc1d83dc5d86da0f))
+
 ## [1.0.3](https://github.com/tonybentley/signalk-multiplex-viewer/compare/v1.0.2...v1.0.3) (2023-12-31)
 
 
