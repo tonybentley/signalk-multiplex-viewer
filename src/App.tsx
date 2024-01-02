@@ -42,7 +42,6 @@ const CustomToolbar = () => {
 
 function App() {
   
-  const [data] = useState(Array<Event>());
   const [events, setEvents] = useState(Array<EEListItem> ());
   const [emitters, setEmitters] = useState(Array<EListItem> ());
   const [eventItems, setEventItems] = useState(Array<EventItem> ());
@@ -53,6 +52,38 @@ function App() {
     { field: 'event', headerName: 'Event', description:'Associated emitter event', width: 150 },
     { field: 'data', headerName: 'Data', description:'NMEA 0183 string, or NMEA 2000 JSON', width: 650 },
   ];
+
+  const initData = (eventData: Data) => {
+    let eventList: Array<EEListItem> = []
+    let emittersList: Array<EListItem> = []
+    eventData.events.forEach((event: Event) => {
+      const hasEventListItem = eventList.filter((e: EEListItem) => e.value === event.event);
+      const boundEmitters = Object.keys(event.emitters).filter(key=> key !== 'NO_EMITTER_ID')
+      //add event to eventsList
+      if(hasEventListItem.length === 0 && boundEmitters.length > 0){
+        eventList.push({
+          id: uuid(),
+          value: event.event,
+          emitters: boundEmitters,
+          checked: false,
+          visible: false
+        })
+      }
+      //add emitters to emittersList
+      Object.keys(event.emitters).forEach((emitter: string) => {
+        const hasEmitterListItem = emittersList.filter((e: EListItem) => e.value === emitter);
+        if(hasEmitterListItem.length === 0 && emitter !== 'NO_EMITTER_ID'){
+          emittersList.push({
+            id: uuid(),
+            value: emitter,
+            checked: false
+          })
+        }
+      })
+    });
+    setEmitters([...emittersList]);
+    setEvents([ ...eventList]);
+  }
 
   const updateEventsChecked = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { value, checked } = event.target;
@@ -132,42 +163,14 @@ function App() {
     }
   }, [events])
   
+  // on page load get data
   useEffect(() => {
     getData()
-      .then((eventData: Data) => {
-        let eventList: Array<EEListItem> = []
-        let emittersList: Array<EListItem> = []
-        eventData.events.forEach((event: Event) => {
-          const hasEventListItem = eventList.filter((e: EEListItem) => e.value === event.event);
-          const boundEmitters = Object.keys(event.emitters).filter(key=> key !== 'NO_EMITTER_ID')
-          //add event to eventsList
-          if(hasEventListItem.length === 0 && boundEmitters.length > 0){
-            eventList.push({
-              id: uuid(),
-              value: event.event,
-              emitters: boundEmitters,
-              checked: false,
-              visible: false
-            })
-          }
-          //add emitters to emittersList
-          Object.keys(event.emitters).forEach((emitter: string) => {
-            const hasEmitterListItem = emittersList.filter((e: EListItem) => e.value === emitter);
-            if(hasEmitterListItem.length === 0 && emitter !== 'NO_EMITTER_ID'){
-              emittersList.push({
-                id: uuid(),
-                value: emitter,
-                checked: false
-              })
-            }
-          })
-        });
-        setEmitters([...emittersList]);
-        setEvents([ ...eventList]);
-      }).catch((err) => {    
+      .then(initData)
+      .catch((err) => {    
         throw err;
       })
-  }, [data]);
+  }, []);
 
 
   useEffect(() => {

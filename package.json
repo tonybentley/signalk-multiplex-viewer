@@ -1,5 +1,7 @@
 {
   "name": "signalk-multiplex-viewer",
+  "author": "Tony Bentley",
+  "description": "View multiplexed data from Signal K data sources",
   "version": "1.0.4",
   "private": false,
   "repository": "https://github.com/tonybentley/signalk-multiplex-viewer",
