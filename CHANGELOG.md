@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/tonybentley/signalk-multiplex-viewer/compare/v1.1.0...v1.1.1) (2024-01-03)
+
+
+### Bug Fixes
+
+* hostname with prototcol for domain names ([a6a68ab](https://github.com/tonybentley/signalk-multiplex-viewer/commit/a6a68ab60f4d9b6309bc99c54e942d76f4d2841c))
+
 # [1.1.0](https://github.com/tonybentley/signalk-multiplex-viewer/compare/v1.0.4...v1.1.0) (2024-01-03)
 
 
