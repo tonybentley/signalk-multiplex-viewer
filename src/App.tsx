@@ -28,8 +28,9 @@ import * as nmea from 'nmea-simple';
 import './App.css';
 
 
+const location = window.location.host;
 const getData = async () => {
-  const res = await fetch(`${window.location.host}/skServer/eventsRoutingData`);
+  const res = await fetch(`http://${location}/skServer/eventsRoutingData`);
   return await res.json();
 }
 
@@ -171,7 +172,7 @@ function App() {
   const updateSocketEvents = useCallback(() => {
     const checkedVisibleEvents = events.filter((event: EEListItem) => event.checked === true && event.visible === true)
     const eventList = checkedVisibleEvents.map(event => event.value).join(',');
-    const socketAddress = `ws:${window.location.host}/signalk/v1/stream?events=${eventList}&subscribe=none`;
+    const socketAddress = `ws:${location}/signalk/v1/stream?events=${eventList}&subscribe=none`;
     if(checkedVisibleEvents.length > 0){
       socketConnection.current?.close();
       const socket = new WebSocket(socketAddress);
