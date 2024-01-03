@@ -1,10 +1,14 @@
 # signalk-multiplex-viewer
 A plugin for tracing NMEA 0183 and 2000 multiplexed events from Signalk server
 
-- Select from one or more event emitters
-- Choose from a list of associated events
-- Filter and search for targeted NMEA sentences/pgns
-- Find duplicates or missing values and validate that Signalk is providing the correct values for your NMEA connections
+### Instructions
+- Check the Emitters associated with the NMEA data source
+- Check the Events associated with the NMEA data source
+- Supported NMEA 0183 sentences will display in the Capture Window: APB, BWC, DBT, DTM, GGA, GLL, GNS, GSA, GST, GSV, HDG, HDM, HDT, MTK, MWV, RDID, RMC, VHW, VTG, ZDA
+- All Signalk converted NMEA 2000 PGNs will display in the Capture Window
+- Cick a row to inspect the formatted data in the Capture Window
+- Use the filters to reduce the rows to match specific criteria
+- You can export the rows into a CSV file
 
 NOTE: Depends on signalk-server branch [ws-events](https://github.com/SignalK/signalk-server/tree/ws-events) until merged.
 
