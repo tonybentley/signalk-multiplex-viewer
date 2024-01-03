@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/tonybentley/signalk-multiplex-viewer/compare/v1.0.4...v1.1.0) (2024-01-03)
+
+
+### Features
+
+* Adding nmea 0183 parser and instructions ([a6cdb6c](https://github.com/tonybentley/signalk-multiplex-viewer/commit/a6cdb6ce4b9ef37da5d30b4cbe63680b1b59d644))
+
 ## [1.0.4](https://github.com/tonybentley/signalk-multiplex-viewer/compare/v1.0.3...v1.0.4) (2024-01-01)
 
 
