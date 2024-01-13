@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/tonybentley/signalk-multiplex-viewer/compare/v1.1.1...v1.2.0) (2024-01-13)
+
+
+### Features
+
+* JSON formatting in Capture Window ([b6a136b](https://github.com/tonybentley/signalk-multiplex-viewer/commit/b6a136b0e1d46d5a9d907cff04ff04a3243e664d))
+
 ## [1.1.1](https://github.com/tonybentley/signalk-multiplex-viewer/compare/v1.1.0...v1.1.1) (2024-01-03)
 
 
