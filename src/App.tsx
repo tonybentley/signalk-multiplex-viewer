@@ -3,7 +3,8 @@ import {
   GridToolbarColumnsButton, 
   GridToolbarContainer,
   GridToolbarExport,
-  GridToolbarFilterButton 
+  GridToolbarFilterButton,
+  GridToolbarQuickFilter
 } from '@mui/x-data-grid';
 import DialogTitle from '@mui/material/DialogTitle';
 import Dialog from '@mui/material/Dialog';
@@ -22,12 +23,16 @@ import {
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import InfoRoundedIcon from '@mui/icons-material/InfoRounded';
 import { useState, useEffect, useCallback, useRef } from 'react';
+import { JsonView, allExpanded, defaultStyles } from 'react-json-view-lite';
+import 'react-json-view-lite/dist/index.css';
+
 import { Data, Event, EventData, EEListItem, EListItem, EventItem } from './interfaces';
 import { v4 as uuid } from 'uuid';
 import * as nmea from 'nmea-simple';
 import './App.css';
 
-
+//uncoment for running react app with hot reload, comment for production
+// const location = `${window.location.host.replace('4','3')}`
 const location = window.location.host;
 const getData = async () => {
   const res = await fetch(`http://${location}/skServer/eventsRoutingData`);
@@ -40,7 +45,9 @@ const CustomToolbar = () => {
       <GridToolbarColumnsButton />
       <GridToolbarFilterButton />
       <GridToolbarExport />
+      <GridToolbarQuickFilter />
     </GridToolbarContainer>
+    
   );
 }
 
@@ -50,7 +57,7 @@ function App() {
   const [emitters, setEmitters] = useState(Array<EListItem> ());
   const [eventItems, setEventItems] = useState(Array<EventItem> ());
   const socketConnection = useRef<WebSocket | null>(null);
-  const [styled, setStyled] = useState()
+  const [styled, setStyled] = useState({})
 
   const [dialog, setDialog] = useState(false);
 
@@ -297,7 +304,8 @@ function App() {
                 <Typography variant="body1">Capture Window</Typography>
             </AccordionSummary>
             <AccordionDetails >
-            { <pre style={{whiteSpace:'pre-wrap'}}> { JSON.stringify(styled, null, 2) } </pre> }
+            <JsonView data={styled} shouldExpandNode={allExpanded} style={defaultStyles} />
+
             </AccordionDetails>
           </Accordion>
         </Grid>
@@ -320,11 +328,12 @@ function App() {
       <Dialog  open={dialog} onClose={()=>{setDialog(false)}}>
       <DialogTitle>Instructions</DialogTitle>
       <ul>
-        <li>Check the Emitters associated with the NMEA data source</li>
-        <li>Check the Events associated with the NMEA data source</li>
-        <li>Cick a row to inspect the formatted data in the Capture Window</li>
+        <li>Select the Emitters associated with the NMEA data source</li>
+        <li>Select the Events associated with the NMEA data source</li>
+        <li>Click a row to inspect the formatted data in the Capture Window</li>
         <li>Use the filters to reduce the rows to match specific criteria</li>
         <li>You can export the rows into a CSV file</li>  
+        <li>Refresh your browser if Signalk Server has been restarted, server or plugin configuration modified, or local network has been interrupted</li>
         <li>Currently only the following NMEA 0183 sentences can be parsed: APB, BWC, DBT, DTM, GGA, GLL, GNS, GSA, GST, GSV, HDG, HDM, HDT, MTK, MWV, RDID, RMC, VHW, VTG, ZDA</li> 
       </ul>
       </Dialog>
